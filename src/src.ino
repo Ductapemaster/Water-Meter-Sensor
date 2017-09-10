@@ -7,8 +7,8 @@
 #include <ArduinoOTA.h>
 #include <SparkFun_MAG3110.h>
 
-const char* ssid     = "...";
-const char* password = "...";
+// WiFi credentials from file so they can be hidden
+#include "wifi_credentials.h"
 
 MAG3110 mag = MAG3110(); //Instantiate MAG3110
 long int last_time = 0;
@@ -19,7 +19,7 @@ void setup() {
     // WiFi Setup
     Serial.println(F("ESP8266 Booting"));
     WiFi.mode(WIFI_STA);
-    WiFi.begin(ssid, password);
+    WiFi.begin(HIDDEN_SSID, HIDDEN_PASS);
     while (WiFi.waitForConnectResult() != WL_CONNECTED) {
         Serial.println(F("WiFi Connection Failed! Rebooting..."));
         delay(5000);
